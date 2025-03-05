@@ -3,54 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIS Shopping Spree</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1>Welcome to BIS Shopping Spree</h1>
-        <a href="game.html" class="play-btn"Play Now</a>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-
-<!-- Game Page -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Spree Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BIS Shopping Spree - Game</title>
+    <link rel="stylesheet" href="game.css">
 </head>
 <body>
     <div class="game-container">
-        <h1>Shopping Spree</h1>
-        <p>Budget: ₹<span id="budget">1000</span></p>
-        <div class="store">
-            <div class="item" data-price="200">
-                <img src="images/item1.png" alt="Item 1">
-                <p>Item 1 - ₹200</p>
-                <button onclick="buyItem(200)">Buy</button>
-            </div>
-            <div class="item" data-price="300">
-                <img src="images/item2.png" alt="Item 2">
-                <p>Item 2 - ₹300</p>
-                <button onclick="buyItem(300)">Buy</button>
-            </div>
-            <div class="item" data-price="150">
-                <img src="images/item3.png" alt="Item 3">
-                <p>Item 3 - ₹150</p>
-                <button onclick="buyItem(150)">Buy</button>
+        <div class="header">
+            <h1>🛍 BIS Shopping Spree</h1>
+            <p>Collect all the BIS-certified products before time runs out!</p>
+            <div class="score-timer">
+                <span id="score">Score: 0</span>
+                <span id="timer">Time Left: 30s</span>
             </div>
         </div>
-        <p id="message"></p>
+
+        <div class="shopping-area">
+            <img id="player" src="player.png" alt="Player">
+            <div id="products"></div>
+        </div>
+
+        <div class="cart">
+            <h2>Your Cart 🛒</h2>
+            <div id="cart-items"></div>
+        </div>
     </div>
+    <div class="game-container">
+        <div id="product-list"></div> <!-- Products appear here -->
+        
+        <div class="basket-container">
+            <img src="images/basket.png" id="basket" alt="Basket">
+            <div id="basket-items"></div> <!-- BIS products go here -->
+        </div>
+        
+        <p id="score">Score: 0</p>
+    </div>
+    
 
     <script src="game.js"></script>
-
 </body>
 </html>

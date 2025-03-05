@@ -1,17 +1,31 @@
-const express = require("express");
-const Score = require("./models/Score");
+window.onload = function () {
+    let scores = JSON.parse(localStorage.getItem("scores")) || [];
+    let leaderboard = document.getElementById("leaderboard");
 
-const router = express.Router();
+    leaderboard.innerHTML = "<h2>Leaderboard</h2>";
 
-router.post("/save-score", async (req, res) => {
-  const { username, score } = req.body;
-  await Score.create({ username, score });
-  res.json({ message: "Score saved!" });
-});
+    if (scores.length === 0) {
+        leaderboard.innerHTML += "<p>No scores yet.</p>";
+    } else {
+        scores.sort((a, b) => b.score - a.score); // Highest first
+        scores.forEach((entry, index) => {
+            let scoreItem = document.createElement("p");
+            scoreItem.textContent = `#${index + 1} - ${entry.name}: ${entry.score}`;
+            scoreItem.classList.add("fade-in"); // Apply animation
+            leaderboard.appendChild(scoreItem);
+        });
+    }
 
-router.get("/leaderboard", async (req, res) => {
-  const scores = await Score.find().sort({ score: -1 }).limit(10);
-  res.json(scores);
-});
+    // Reset Button
+    let resetBtn = document.createElement("button");
+    resetBtn.textContent = "Reset Leaderboard";
+    resetBtn.onclick = function () {
+        localStorage.removeItem("scores");
+        location.reload();
+    };
+    resetBtn.classList.add("reset-btn");
+    leaderboard.appendChild(resetBtn);
+};
 
-module.exports = router;
+
+

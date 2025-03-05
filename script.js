@@ -1,41 +1,85 @@
-// Product Data (BIS-certified & non-certified products)
 const products = [
-    { name: "BIS Certified Milk", image: "images/milk.jpg", certified: true },
-    { name: "BIS Certified Helmet", image: "images/helmet.jpg", certified: true },
-    { name: "Unsafe Toy", image: "images/toy.jpg", certified: false },
-    { name: "Counterfeit Charger", image: "images/charger.jpg", certified: false }
+    { name: "BIS Milk", bisCertified: true, img: "milk.png" },
+    { name: "BIS gold", bisCertified: false, img: "BIS.png" },
+    { name: "BIS Helmet", bisCertified: true, img: "helmet.png" },
+    { name: "Food", bisCertified: false, img: "food.png" }
 ];
 
 let score = 0;
+let bisCount = 0;
 
-// Function to display products
 function loadProducts() {
-    const productList = document.getElementById("product-list");
+    let productList = document.getElementById("product-list");
     productList.innerHTML = "";
-
-    products.forEach((product, index) => {
-        const productDiv = document.createElement("div");
-        productDiv.classList.add("product");
-        productDiv.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <p>${product.name}</p>
-        `;
-        productDiv.addEventListener("click", () => checkProduct(product));
-        productList.appendChild(productDiv);
+    
+    products.forEach((p, index) => {
+        let div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `<img src="${p.img}" alt="${p.name}"><p>${p.name}</p>`;
+        
+        div.onclick = function() {
+            if (p.bisCertified) {
+                bisCount++;
+                score += 10;
+                div.classList.add("selected");
+                setTimeout(() => div.remove(), 500); // Remove after animation
+            } else {
+                div.classList.add("wrong");
+                setTimeout(() => div.classList.remove("wrong"), 400);
+            }
+            document.getElementById("score").innerText = `Score: ${score}`;
+        };
+        
+        productList.appendChild(div);
     });
 }
 
-// Function to check if the selected product is BIS-certified
-function checkProduct(product) {
-    if (product.certified) {
-        score += 10;
-        alert("✅ Correct! This is a BIS-certified product.");
-    } else {
-        score -= 5;
-        alert("❌ Incorrect! This is not a BIS-certified product.");
-    }
-    document.getElementById("score").innerText = "Score: " + score;
+function endGame() {
+    localStorage.setItem("highScore", bisCount);
+    alert(`Game Over! You collected ${bisCount} BIS products.`);
+    window.location.href = "leaderboard.html";
 }
 
-// Start game button
-document.getElementById("start-game").addEventListener("click", loadProducts);
+window.onload = loadProducts;
+// Load sound effects
+const correctSound = new Audio("correct.mp3");
+const wrongSound = new Audio("wrong.mp3");
+
+function loadProducts() {
+    let productList = document.getElementById("product-list");
+    let cartItems = document.getElementById("cart-items");
+    productList.innerHTML = "";
+    
+    products.forEach((p, index) => {
+        let div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `<img src="${p.img}" alt="${p.name}"><p>${p.name}</p>`;
+        
+        div.onclick = function() {
+            if (p.bisCertified) {
+                bisCount++;
+                score += 10;
+                correctSound.play();
+                
+                // Clone the selected product and move it to the cart
+                let cartItem = div.cloneNode(true);
+                cartItem.classList.remove("product");
+                cartItem.classList.add("cart-item");
+                cartItems.appendChild(cartItem);
+
+                // Add animation and then remove from product list
+                div.classList.add("selected");
+                setTimeout(() => div.style.display = "none", 500);
+            } else {
+                wrongSound.play();
+                div.classList.add("wrong");
+                setTimeout(() => div.classList.remove("wrong"), 400);
+            }
+            document.getElementById("score").innerText = `Score: ${score}`;
+        };
+        
+        productList.appendChild(div);
+    });
+}
+
+

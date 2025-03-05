@@ -7,23 +7,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>BIS Shopping Spree</h1>
-    </header>
+    <div class="home-container">
+        <div class="content">
+            <h1>🛍 BIS Shopping Spree</h1>
+            <p>Welcome to the **BIS Shopping Spree**, a fun and educational game where you learn about BIS-certified products!</p>
 
-    <main>
-        <p>Select BIS-certified products and avoid unsafe items!</p>
-        
-        <div id="game-container">
-            <div id="product-list">
-                <!-- Products will be displayed here -->
+            <div class="info-box">
+                <h2>🔍 What is BIS?</h2>
+                <p>The **Bureau of Indian Standards (BIS)** ensures quality, safety, and reliability in consumer products. Look for the **BIS Certification Mark** when purchasing essential goods like helmets, electrical appliances, packaged food, and gold.</p>
             </div>
+
+            <div class="info-box">
+                <h2>🎮 How to Play?</h2>
+                <ul>
+                    <li>🛒 Select **BIS-certified products** from the virtual store.</li>
+                    <li>🚫 Avoid counterfeit or unsafe products.</li>
+                    <li>💯 Earn points for choosing the right items.</li>
+                    <li>⏳ The game is **timed**. Pick as many correct items as possible before time runs out!</li>
+                    <li>🏆 The player with the highest score wins!</li>
+                </ul>
+            </div>
+
+            <button onclick="startGame()">Start Game</button>
         </div>
+    </div>
 
-        <button id="start-game">Start Game</button>
-        <p id="score">Score: 0</p>
-    </main>
-
-    <script src="script.js"></script>
+    <script>
+        function startGame() {
+            window.location.href = "game.html";
+        }
+    </script>
+    <button class="animated-btn" onclick="window.location.href='leaderboard.html'">View Leaderboard</button> 
+    <img src="bis-logo.png" alt="BIS Logo" class="watermark">   
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIS Shopping Spree</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+

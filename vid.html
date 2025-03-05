@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIS Shopping Spree</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F5F5;
+            color: #0033A0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0033A0;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        button {
+            background-color: #FFD700;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #FFC107;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        section:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BIS Shopping Spree</h1>
+        <p>Learn about BIS-certified products while playing!</p>
+        <button onclick="startGame()">Play Now</button>
+    </header>
+    
+    <section id="video-section">
+        <h2>Watch Game Demo</h2>
+        <video controls>
+            <source src="shopping.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+    
+    <section id="how-to-play">
+        <h2>How to Play</h2>
+        <p>Select BIS-certified products and avoid unsafe items.</p>
+        <p>Earn points for correct choices and track your progress.</p>
+    </section>
+    
+    <section id="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list">
+            <!-- Leaderboard entries will be dynamically added here -->
+        </ul>
+    </section>
+    
+    <section id="login">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter your username">
+        <button onclick="loginUser()">Login</button>
+    </section>
+    
+    <section id="multiplayer">
+        <h2>Multiplayer Mode</h2>
+        <button onclick="startMultiplayer()">Join a Game</button>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
